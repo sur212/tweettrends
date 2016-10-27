@@ -1,0 +1,167 @@
+<!doctype html>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Starter Page</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+.heading {
+  color: #cc0000;
+   font-size: 32px;
+    font-family: Lobster;
+    margin: 0px;
+}
+.head{
+  padding: 0px;
+}
+body {
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color:     #FFEBCD;
+}
+#map {
+   border-color: #cc0000;
+   border-width: 7px;
+  border-style: solid;
+  border-radius: 10px;
+  float: center;
+  margin: auto;
+  width: 800px;
+  height: 400px
+}
+.btn{
+  background-color: #cc0000;
+  color: white;
+  border-radius: 12px;
+  padding: 5px 12px;
+  font-family: Lobster;
+  font-size: 12px;
+}
+.btn:hover{
+  font-size: 12px;
+  font-family: Lobster;
+  padding: 5px 12px;
+  border-radius: 12px;
+  background-color: #cc0000;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+
+
+</style>
+  </head>
+<body>
+<script async defer 
+          src="https://maps.googleapis.com/maps/api/js?key=PUTYOURKEYHERE&callback=initMap"></script>
+<table class="Head" , style="width:100%">
+  <tr>
+<th><h2 class = "heading">TweetMaps</h2></th>
+<br>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", class: 'btn', :name => nil %>
+  </p>
+<% end %></th>
+</tr>
+</table>
+<table style="width:100%">
+  <tr>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#mufc"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#happydiwali"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#lfc"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#worldseries"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#nba"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#knicks"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#donaldtrump"%>
+</p>
+<% end %></th>
+<th><%= form_tag maps_path, :method => 'get' do %>
+  <p>
+<%= submit_tag  :submit , class: 'btn', name: "search",value: "#saferindia"%>
+</p>
+<% end %></th>
+ </tr>
+ </table>
+
+<div >
+  <div id="map" ></div>
+</div>
+
+
+<script type="text/javascript">
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: 0,
+        lng: 0
+      },
+      zoom: 2
+    });
+
+    var latitudes   = [];
+    var longitudes  = [];
+    <% @maps.each do |map| %>
+      latitudes.push(<%= map["latitude"] %>);
+      longitudes.push(<%= map["longitude"] %>);
+    <% end %>
+
+    var marker, i;
+    for (i = 0; i < latitudes.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitudes[i], longitudes[i]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+        }
+      })(marker, i));
+    }
+  }
+  initMap(); 
+</script>
+
+
+<!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
+
+
