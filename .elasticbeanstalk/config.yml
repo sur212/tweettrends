@@ -1,0 +1,13 @@
+branch-defaults:
+  master:
+    environment: tweettrends-env
+    group_suffix: null
+global:
+  application_name: tweettrends
+  branch: null
+  default_ec2_keyname: trendz
+  default_platform: Ruby 2.3 (Puma)
+  default_region: us-west-2
+  profile: eb-cli
+  repository: null
+  sc: git

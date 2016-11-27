@@ -1,4 +1,3 @@
-require 'C:/Users/Shashank Pavan/Desktop/CloudComputing-Assignment-1/app/controllers/server_side.rb'
 require 'faraday_middleware/aws_signers_v4'
 require 'elasticsearch'
 
