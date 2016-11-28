@@ -9,9 +9,9 @@ class MapsController < ApplicationController
   # GET /maps.json
   def index
     @a              = params[:search]
-    client          = Elasticsearch::Client.new(url: 'http://search-twitterstream-ywbxov7tqypovgqglnjcuer4oq.us-west-2.es.amazonaws.com') do |f|
+    client          = Elasticsearch::Client.new(url: '') do |f|
                       f.request :aws_signers_v4,
-                        credentials: Aws::Credentials.new( 'AKIAICYMYADURIIPPTUQ', 'npB74E7xPzUt3atifX33DKQ0gHp24YmPzt138fmd' ),
+                        credentials: Aws::Credentials.new( '', '' ),
                         service_name: 'es',
                         region: 'us-west-2'
                       end
