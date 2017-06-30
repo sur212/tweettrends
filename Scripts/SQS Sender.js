@@ -42,7 +42,7 @@ Twitter.stream('statuses/filter', {track: '#mufc,#lfc,#knicks,#donaldtrump,#nba'
   
   var sqsParams = {
   MessageBody: JSON.stringify(esinp),
-  QueueUrl: 'https://sqs.us-east-1.amazonaws.com/423494000181/sss'
+  QueueUrl: 'https://sqs.us-east-1.amazonaws.com'
 };
 
 sqs.sendMessage(sqsParams, function(err, data) {
